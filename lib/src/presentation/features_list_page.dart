@@ -10,7 +10,6 @@ class FeaturesListPage extends StatelessWidget {
     return Scaffold(
       appBar: const SharedAppBar(
         title: 'Features List',
-        icon: Icons.list,
       ),
       body: ListView(
         children: <Widget>[

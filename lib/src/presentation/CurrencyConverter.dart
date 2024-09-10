@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/src/presentation/shared/app_bar.dart';
 
 class CurrencyConverter extends StatefulWidget {
+  const CurrencyConverter({super.key});
+
   @override
   _CurrencyConverterState createState() => _CurrencyConverterState();
 }
@@ -36,7 +38,6 @@ class _CurrencyConverterState extends State<CurrencyConverter> {
     return Scaffold(
       appBar: const SharedAppBar(
         title: 'Currency Converter',
-        icon: Icons.euro,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -87,7 +88,8 @@ class _CurrencyConverterState extends State<CurrencyConverter> {
             if (_convertedAmount != null)
               Text(
                 'Converted Amount: $_convertedAmount $_toCurrency',
-                style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                style:
+                    const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
           ],
         ),

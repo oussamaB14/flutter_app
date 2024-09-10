@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/src/presentation/settings.dart';
 
 class SharedAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
-  final IconData icon;
 
-  const SharedAppBar({super.key, required this.title, required this.icon});
+  const SharedAppBar({
+    super.key,
+    required this.title,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -12,8 +15,13 @@ class SharedAppBar extends StatelessWidget implements PreferredSizeWidget {
       title: Text(title),
       actions: [
         IconButton(
-          icon: Icon(icon),
-          onPressed: () {},
+          icon: const Icon(Icons.settings),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const Settings()),
+            );
+          },
         ),
       ],
     );
