@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/presentation/CurrencyConverter.dart';
+import 'package:flutter_app/src/presentation/Todo.dart';
 import 'package:flutter_app/src/presentation/shared/app_bar.dart';
 
 class FeaturesListPage extends StatelessWidget {
@@ -9,8 +10,7 @@ class FeaturesListPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const SharedAppBar(
-        title: 'Features List',
-      ),
+          title: 'Features List', backGroundColor: Colors.white),
       body: ListView(
         children: <Widget>[
           ListTile(
@@ -19,7 +19,18 @@ class FeaturesListPage extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => CurrencyConverter()),
+                MaterialPageRoute(
+                    builder: (context) => const CurrencyConverter()),
+              );
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.task),
+            title: const Text('Todo List '),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const ToDoList()),
               );
             },
           ),

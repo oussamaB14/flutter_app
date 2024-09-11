@@ -10,88 +10,80 @@ class CurrencyConverter extends StatefulWidget {
 
 class _CurrencyConverterState extends State<CurrencyConverter> {
   final TextEditingController _amountController = TextEditingController();
-  String _fromCurrency = 'EUR';
-  String _toCurrency = 'TND';
-  double? _convertedAmount;
-
-  // Dummy conversion rates for simplicity
-  final Map<String, double> _conversionRates = {
-    'EUR_TO_TND': 3.3,
-    'TND_TO_EUR': 0.3,
-  };
 
   void _convertCurrency() {
-    final amount = double.tryParse(_amountController.text);
-    if (amount != null) {
-      setState(() {
-        if (_fromCurrency == 'EUR' && _toCurrency == 'TND') {
-          _convertedAmount = amount * _conversionRates['EUR_TO_TND']!;
-        } else if (_fromCurrency == 'TND' && _toCurrency == 'EUR') {
-          _convertedAmount = amount * _conversionRates['TND_TO_EUR']!;
-        }
-      });
-    }
+    setState(() {
+      double amount = double.tryParse(_amountController.text) ?? 0;
+
+      if (groupValue == "EuroToDinar") {
+        result = amount * 3.4;
+      } else if (groupValue == "DinarToEuro") {
+        result = amount / 3.4;
+      }
+      print(amount);
+      print(result);
+    });
   }
 
+  String groupValue = "EuroToDinar";
+  double result = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const SharedAppBar(
-        title: 'Currency Converter',
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            TextField(
-              controller: _amountController,
-              keyboardType: TextInputType.number,
-              decoration: const InputDecoration(
-                labelText: 'Amount',
+      appBar: const SharedAppBar(title: 'TP1', backGroundColor: Colors.purple),
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              TextField(
+                controller: _amountController,
+                keyboardType: TextInputType.number,
+                decoration: const InputDecoration(
+                  labelText: 'Montant',
+                ),
               ),
-            ),
-            const SizedBox(height: 16),
-            DropdownButton<String>(
-              value: _fromCurrency,
-              items: ['EUR', 'TND']
-                  .map((currency) => DropdownMenuItem(
-                        value: currency,
-                        child: Text(currency),
-                      ))
-                  .toList(),
-              onChanged: (value) {
-                setState(() {
-                  _fromCurrency = value!;
-                });
-              },
-            ),
-            DropdownButton<String>(
-              value: _toCurrency,
-              items: ['EUR', 'TND']
-                  .map((currency) => DropdownMenuItem(
-                        value: currency,
-                        child: Text(currency),
-                      ))
-                  .toList(),
-              onChanged: (value) {
-                setState(() {
-                  _toCurrency = value!;
-                });
-              },
-            ),
-            const SizedBox(height: 16),
-            ElevatedButton(
-              onPressed: _convertCurrency,
-              child: const Text('Convert'),
-            ),
-            const SizedBox(height: 16),
-            if (_convertedAmount != null)
+              const SizedBox(height: 16),
+              RadioListTile(
+                  title: const Text("Euro To Dinar"),
+                  value: "EuroToDinar",
+                  groupValue: groupValue,
+                  onChanged: (value) {
+                    setState(() {
+                      groupValue = value.toString();
+                    });
+                  }),
+              RadioListTile(
+                  title: const Text("DinarToEuro"),
+                  value: "DinarToEuro",
+                  groupValue: groupValue,
+                  onChanged: (value) {
+                    setState(() {
+                      groupValue = value.toString();
+                    });
+                  }),
+              const SizedBox(height: 16),
+              ElevatedButton(
+                  onPressed: _convertCurrency,
+                  style: ButtonStyle(
+                    backgroundColor:
+                        WidgetStateProperty.all(Colors.purple[600]),
+                  ),
+                  child: const Text(
+                    'Convert',
+                    style: TextStyle(color: Colors.white),
+                  )),
+              const SizedBox(height: 16),
               Text(
-                'Converted Amount: $_convertedAmount $_toCurrency',
-                style:
-                    const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                'Result : $result',
+                style: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.red),
               ),
-          ],
+            ],
+          ),
         ),
       ),
     );
