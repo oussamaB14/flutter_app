@@ -4,7 +4,7 @@ import 'package:lets_theme/lets_theme.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key, required this.savedThemeMode});
-final ThemeMode? savedThemeMode;
+  final ThemeMode? savedThemeMode;
   @override
   Widget build(BuildContext context) {
     return LetsTheme(
@@ -16,6 +16,7 @@ final ThemeMode? savedThemeMode;
         theme: light,
         darkTheme: dark,
         home: const HomeScreen(),
+        debugShowCheckedModeBanner: false,
       ),
     );
   }
