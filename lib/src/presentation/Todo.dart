@@ -14,12 +14,14 @@ class _ToDoListState extends State<ToDoList> {
   final List<String> Tasks = ["task", "task 1"];
   void _addTask() {
     String task = _taskController.text;
-    setState(() {
-      Tasks.add(task);
-      _taskController.clear();
-      print(task);
-      print(Tasks);
-    });
+    if (task.isNotEmpty) {
+      setState(() {
+        Tasks.add(task);
+        _taskController.clear();
+        print(task);
+        print(Tasks);
+      });
+    }
   }
 
   void deleteTask(index) {
@@ -38,7 +40,7 @@ class _ToDoListState extends State<ToDoList> {
           Tasks[index],
           style: Theme.of(context).textTheme.bodyLarge,
         ),
-        const Divider()
+        const Divider() EB
       ],
     );*/
         ListTile(

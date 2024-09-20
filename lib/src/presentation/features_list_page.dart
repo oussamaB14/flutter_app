@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/presentation/CurrencyConverter.dart';
 import 'package:flutter_app/src/presentation/Todo.dart';
+import 'package:flutter_app/src/presentation/movie.dart';
 import 'package:flutter_app/src/presentation/shared/app_bar.dart';
 
 class FeaturesListPage extends StatelessWidget {
@@ -34,6 +35,16 @@ class FeaturesListPage extends StatelessWidget {
               );
             },
           ),
+          ListTile(
+            leading: const Icon(Icons.movie_outlined),
+            title: const Text('Movies'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Movie()),
+              );
+            },
+          )
           // Add more features here
         ],
       ),

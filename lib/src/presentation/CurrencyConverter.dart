@@ -46,7 +46,7 @@ class _CurrencyConverterState extends State<CurrencyConverter> {
               ),
               const SizedBox(height: 16),
               RadioListTile(
-                  title: const Text("Euro To Dinar"),
+                  title: const Text("Euro To Dinar 😁"),
                   value: "EuroToDinar",
                   groupValue: groupValue,
                   onChanged: (value) {
